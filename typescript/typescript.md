@@ -240,4 +240,129 @@ function diceRoll() : 1 | 2 | 3 | 4 | 5 | 6 {
 
 <br />
 
-## 
+
+## Unions & Intersection Types
+```ts
+// describes value that can assume several types
+
+function getPet(): Fish | Cat | Bird {
+	// do something useful
+}
+
+// intersection type
+function getExpensivePet(): Expensive & Pet {
+	return the_expensive_pet; 
+}
+```
+
+<br />
+
+
+## Classes
+```ts
+class Greeter {
+  greeting: string;				// default public
+
+  constructor(message: string) {
+    this.greeting = message;
+  }
+
+  greet() {
+    return "Hello, " + this.greeting;
+  }
+}
+
+let greeter = new Greeter("world");
+
+
+// readonly modifier(once set, it's locked)
+// must initialize @ declaration
+class Opt {
+	readonly name: string
+
+	constructor(n: string) {
+		this.name = n;
+	}
+}
+
+let mine = new Opt("jeep")
+
+
+// parameter properties
+// shortens normal format
+
+class Opt {
+	constructor(readonly name: string) {}
+}
+
+// public, private, and protected modifiers can be used
+
+
+// abstract classes
+
+// classes from which others may be derived 
+// but not instantiated directly
+// can contain implementation details
+// abstract needs to be added before abstract methods
+
+abstract Opt {
+	abstract makeSound(): void;
+	
+	move(): void {
+		console.log("Moving...")
+	}
+}
+
+// interface can extend classes
+class Point {x: number; y: number}
+
+interface Point3d extends Point {
+	z: number
+}
+
+let point: Point3d = {x: 2, y: 2, z: 1};
+```
+
+<br />
+
+## Enums
+* as above
+
+<br />
+
+## Generics
+```ts
+function doSomething<T>(thing: T) {}
+
+interface Generically<T> {
+	<T>(arg: T): T;
+}
+
+class GenericName<T> {
+	zeroValue: T
+	add(x:T, y: T) => T;
+}
+
+// generic constraints
+
+function loggingIdentity<T extends Lengthwise>(arg: T) : T {}
+```
+
+<br />
+
+> `keyof` operator
+```ts
+// ensure only allowed keys are used 
+
+interface Person {
+	name: string; age: number; address: string;
+}
+
+function logger(k: keyof Person) {}	
+// only Person keys allowed
+// strings : name, age, address
+```
+
+
+
+
